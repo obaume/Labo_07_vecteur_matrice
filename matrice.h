@@ -16,10 +16,10 @@ Compilateur         : Mingw-w64 g++ 11.2.0
 #ifndef LABO_07_VECTEUR_MATRICE_MATRICE_H
 #define LABO_07_VECTEUR_MATRICE_MATRICE_H
 #include <vector>
+#include <iostream>
 
 using Vecteur = std::vector<int>;
 using Matrice = std::vector<Vecteur>;
-
 
 std::ostream& operator << (std::ostream& os, const Vecteur& v);
 std::ostream& operator << (std::ostream& os, const Matrice& m);

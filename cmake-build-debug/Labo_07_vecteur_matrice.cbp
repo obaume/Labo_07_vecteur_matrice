@@ -85,6 +85,12 @@
 		<Unit filename="C:/Users/oscar/CLionProjects/Labo_07_vecteur_matrice/main.cpp">
 			<Option target="Labo_07_vecteur_matrice"/>
 		</Unit>
+		<Unit filename="C:/Users/oscar/CLionProjects/Labo_07_vecteur_matrice/matrice.cpp">
+			<Option target="Labo_07_vecteur_matrice"/>
+		</Unit>
+		<Unit filename="C:/Users/oscar/CLionProjects/Labo_07_vecteur_matrice/matrice.h">
+			<Option target="Labo_07_vecteur_matrice"/>
+		</Unit>
 		<Unit filename="C:/Users/oscar/CLionProjects/Labo_07_vecteur_matrice/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

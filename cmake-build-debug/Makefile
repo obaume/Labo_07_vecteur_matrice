@@ -152,6 +152,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Labo_07_vecteur_matrice.dir\build.make CMakeFiles/Labo_07_vecteur_matrice.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+matrice.obj: matrice.cpp.obj
+.PHONY : matrice.obj
+
+# target to build an object file
+matrice.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Labo_07_vecteur_matrice.dir\build.make CMakeFiles/Labo_07_vecteur_matrice.dir/matrice.cpp.obj
+.PHONY : matrice.cpp.obj
+
+matrice.i: matrice.cpp.i
+.PHONY : matrice.i
+
+# target to preprocess a source file
+matrice.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Labo_07_vecteur_matrice.dir\build.make CMakeFiles/Labo_07_vecteur_matrice.dir/matrice.cpp.i
+.PHONY : matrice.cpp.i
+
+matrice.s: matrice.cpp.s
+.PHONY : matrice.s
+
+# target to generate assembly for a file
+matrice.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Labo_07_vecteur_matrice.dir\build.make CMakeFiles/Labo_07_vecteur_matrice.dir/matrice.cpp.s
+.PHONY : matrice.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -164,6 +188,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... matrice.obj
+	@echo ... matrice.i
+	@echo ... matrice.s
 .PHONY : help
 
 

@@ -21,7 +21,26 @@ Compilateur         : Mingw-w64 g++ 11.2.0
 using Vecteur = std::vector<int>;
 using Matrice = std::vector<Vecteur>;
 
+/**
+ * Nom          : <<
+ * Description  : opérateur de flux pour un Vecteur,
+ *                affiche un Vecteur comme ceci (v1, v2, ... , vn)
+ * Remarques    :
+ * @param os    : flux
+ * @param v     : vecteur à afficher
+ * @return      : retourne le flux
+ */
 std::ostream& operator << (std::ostream& os, const Vecteur& v);
+
+/**
+ * Nom          : <<
+ * Description  : opérateur de flux pour une Matrice
+ *                affiche une Matrice comme ceci [(Vecteur1), ... ,(Vecteurn)] *
+ * Remarques    :
+ * @param os    : flux
+ * @param m     : matrice à afficher
+ * @return      : retourne le flux
+ */
 std::ostream& operator << (std::ostream& os, const Matrice& m);
 
 bool estCarree(const Matrice& m);

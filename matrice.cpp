@@ -14,7 +14,6 @@ Compilateur         : Mingw-w64 g++ 11.2.0
 */
 #include "matrice.h"
 #include <iostream>
-#include <iomanip>
 #include <numeric>
 using namespace std;
 
@@ -41,26 +40,35 @@ Vecteur sommeLigne(const Matrice& m){
    return vOut;
 }
 
-/*Vecteur vectSommeMin(const Matrice& m){}
-Matrice sortMatrice(const Matrice& m){}*/
+Vecteur vectSommeMin(const Matrice& m){
+   if(m.empty()){
+      return {};
+   }
+   Vecteur sommeLigne = ::sommeLigne(m);
+   Vecteur::iterator minimum = min_element(sommeLigne.begin(), sommeLigne.end());
+   return m.at(distance(sommeLigne.begin(), minimum));
+}
+
+/*Matrice sortMatrice(const Matrice& m){}*/
 
 ostream& operator << (ostream& os, const Vecteur& v) {
    cout << "(";
-   for (size_t i=0; i<v.size(); ++i) {
-      if (i)
+   for (Vecteur::const_iterator i = v.cbegin();i != v.cend(); ++i) {
+      if (i != v.begin())
          os << ", ";
-      os << v[i];
+      os << *i;
    }
    cout << ")";
    return os;
 }
+
 ostream& operator << (ostream& os, const Matrice& m) {
    cout << "[";
-   for(Matrice::iterator i = m.begin();i != m.end(); ++i){
+   for(Matrice::const_iterator i = m.cbegin();i != m.cend(); ++i){
       if(i != m.begin())
          cout << ", ";
       cout << "(";
-      for(Vecteur::iterator j = i->begin(); j != i->end(); ++j){
+      for(Vecteur::const_iterator j = i->cbegin(); j != i->cend(); ++j){
          if(j != i->begin())
             cout << ", ";
          cout << *j;
@@ -68,4 +76,5 @@ ostream& operator << (ostream& os, const Matrice& m) {
       cout << ")";
    }
    cout << "]";
+   return os;
 }

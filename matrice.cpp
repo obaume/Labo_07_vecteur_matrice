@@ -17,13 +17,12 @@ Compilateur         : Mingw-w64 g++ 11.2.0
 #include <numeric>
 using namespace std;
 
-
 bool estReguliere(const Matrice& m){
    if(m.empty())
       return true;
    size_t tailleLigne = m.at(0).size();
-   for(size_t ligne = 1; ligne < m.size(); ++ligne){
-      if(tailleLigne != m.at(ligne).size())
+   for(Matrice::const_iterator ligne = m.cbegin() + 1; ligne != m.cend(); ++ligne){
+      if(tailleLigne != ligne->size())
          return false;
    }
    return true;
@@ -33,9 +32,9 @@ Vecteur sommeLigne(const Matrice& m){
    if(m.empty()){
       return {0};
    }
-   Vecteur vOut = Vecteur(m.size());
-   for(size_t i = 0; i < m.size(); ++i){
-      vOut.at(i) = accumulate(m.at(i).begin(),m.at(i).end(),0);
+   Vecteur vOut;
+   for(Matrice::const_iterator i = m.cbegin(); i != m.cend(); ++i){
+      vOut.push_back(accumulate(i->cbegin(),i->cend(),0));
    }
    return vOut;
 }
@@ -49,7 +48,18 @@ Vecteur vectSommeMin(const Matrice& m){
    return m.at(distance(sommeLigne.begin(), minimum));
 }
 
-/*Matrice sortMatrice(const Matrice& m){}*/
+Matrice sortMatrice(const Matrice& m){
+   Matrice mOut = m;
+   Vecteur tmp;
+   Matrice ::const_iterator posMin;
+   for(Matrice::const_iterator i = mOut.cbegin(); i != mOut.cend(); ++i){
+      posMin = min_element(i, mOut.cend());
+      tmp = *i;
+      mOut.at(distance(mOut.cbegin(),i)) = mOut.at(distance(mOut.cbegin(), posMin));
+      mOut.at(distance(mOut.cbegin(), posMin)) = tmp;
+   }
+   return mOut;
+}
 
 ostream& operator << (ostream& os, const Vecteur& v) {
    cout << "(";

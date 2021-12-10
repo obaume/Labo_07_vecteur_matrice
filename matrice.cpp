@@ -17,15 +17,23 @@ Compilateur         : Mingw-w64 g++ 11.2.0
 #include <numeric>
 using namespace std;
 
+/**
+ * Nom          : compSortMatrice
+ * Description  : comparaison entre v1 et v2 pour le tri de la matrice
+ * Remarques    :
+ * @param v1    : premier vecteur
+ * @param v2    : deuxiême vecteur
+ * @return      : si v1 < v2
+ */
+bool compSortMatrice(const Vecteur& v1, const Vecteur& v2);
+
 bool estReguliere(const Matrice& m){
    if(m.empty())
       return true;
    size_t tailleLigne = m.at(0).size();
-   for(Matrice::const_iterator ligne = m.cbegin() + 1; ligne != m.cend(); ++ligne){
-      if(tailleLigne != ligne->size())
-         return false;
-   }
-   return true;
+   return all_of(m.begin(),m.end(),
+                 [&tailleLigne](const Vecteur& v){return tailleLigne == v.size();
+   });
 }
 
 Vecteur sommeLigne(const Matrice& m){
@@ -50,14 +58,9 @@ Vecteur vectSommeMin(const Matrice& m){
 
 Matrice sortMatrice(const Matrice& m){
    Matrice mOut = m;
-   Vecteur tmp;
-   Matrice ::const_iterator posMin;
-   for(Matrice::const_iterator i = mOut.cbegin(); i != mOut.cend(); ++i){
-      posMin = min_element(i, mOut.cend());
-      tmp = *i;
-      mOut.at(distance(mOut.cbegin(),i)) = mOut.at(distance(mOut.cbegin(), posMin));
-      mOut.at(distance(mOut.cbegin(), posMin)) = tmp;
-   }
+   sort(mOut.begin(),mOut.end(), [](const Vecteur& v1, const Vecteur& v2)
+   {return *min_element(v1.begin(), v1.end()) <= *min_element(v2.begin(), v2.end()
+   );});
    return mOut;
 }
 

@@ -87,7 +87,7 @@ Vecteur sommeColonne(const Matrice& m);
  */
 Vecteur vectSommeMin(const Matrice& m);
 
-Matrice shuffleMatrice(Matrice& m);
+Matrice shuffleMatrice(const Matrice& m);
 
 /**
  * Nom          : sortMatrice

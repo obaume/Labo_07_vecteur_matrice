@@ -123,9 +123,10 @@ Vecteur sommeColonne(const Matrice& m) {
 	return sommeColonne;
 }
 
-Matrice shuffleMatrice(Matrice& m) { // verifier par copie ou reference
+Matrice shuffleMatrice(const Matrice& m) { // verifier par copie ou reference
 	unsigned seed = (unsigned)chrono::system_clock::now().time_since_epoch().count();
-	shuffle(m.begin(), m.end(), default_random_engine(seed));
+   Matrice mOut = m;
+	shuffle(mOut.begin(), mOut.end(), default_random_engine(seed));
 
-	return m;
+	return mOut;
 }

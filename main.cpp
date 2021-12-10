@@ -22,36 +22,13 @@ Compilateur    : Mingw-w64 g++ 11.2.0
 
 using namespace std;
 
-void afficherMatrice(const vector<vector<int>> &matrice);
-
 void testerMatrice(const Matrice& m);
 
 int main() {
-
-
-	vector<vector<int>> matrice(4, vector<int>(2));
-
-	vector<vector<int>> matrice2;
-
-	matrice2.emplace_back(5); // utilise constructeur
-	matrice2.emplace_back(3);
-	matrice2.emplace_back(6);
-	matrice2.emplace_back(4);
-
-	vector<vector<int>> matrice3;
-	matrice3.push_back(vector<int> {1});
-	matrice3.push_back(vector<int> {4, 5});
-	matrice3.push_back(vector<int> {7, 8, 9});
-
-	cout << boolalpha << estCarree(matrice) << endl;
-	cout << minCol(matrice2) << endl;
-
-	for(int i : sommeColonne(matrice3)) {
-		cout << i << " ";
-	}
-	cout << endl;
-
-	afficherMatrice(shuffleMatrice(matrice3));
+   Matrice m = {{4,4}, {1,3},{2}};
+   testerMatrice(m);
+   m = {{1,0,0}, {0,1,0},{0,0,1}};
+   testerMatrice(m);
 
 	return EXIT_SUCCESS;
 }
@@ -59,9 +36,13 @@ int main() {
 void testerMatrice(const Matrice& m){
    cout  << "-------------------------" << boolalpha << endl
          << m << endl
-         << "La matrice est carree    : " << estCarree(m)
-         << "La matrice est reguliere : " << estReguliere(m)
-         << "Somme des lignes de la Matrice : " << sommeLigne(m)
-         <<
+         << "La matrice est carree                  : " << estCarree(m)       << endl
+         << "La matrice est reguliere               : " << estReguliere(m)    << endl
+         << "Taille min d'une ligne                 : " << minCol(m)          << endl
+         << "Somme des lignes                       : " << sommeLigne(m)      << endl
+         << "Somme des colonnes                     : " << sommeColonne(m)    << endl
+         << "Vecteur des sommes minimal d'une ligne : " << vectSommeMin(m)    << endl
+         << "Shuffle Matrice                        : " << shuffleMatrice(m)  << endl
+         << "Sort                                   : " << sortMatrice(m)     << endl;
 }
 

@@ -42,7 +42,14 @@ std::ostream& operator << (std::ostream& os, const Vecteur& v);
  * @return      : retourne le flux
  */
 std::ostream& operator << (std::ostream& os, const Matrice& m);
-
+/**
+ * Nom          :
+ * Description  :
+ *
+ * Remarques    :
+ * @param m
+ * @return
+ */
 bool estCarree(const Matrice& m);
 
 /**
@@ -80,7 +87,7 @@ Vecteur sommeColonne(const Matrice& m);
  */
 Vecteur vectSommeMin(const Matrice& m);
 
-Matrice shuffleMatrice(const Matrice& m);
+Matrice shuffleMatrice(Matrice& m);
 
 /**
  * Nom          : sortMatrice

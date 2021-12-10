@@ -24,6 +24,8 @@ using namespace std;
 
 void afficherMatrice(const vector<vector<int>> &matrice);
 
+void testerMatrice(const Matrice& m);
+
 int main() {
 
 
@@ -54,16 +56,12 @@ int main() {
 	return EXIT_SUCCESS;
 }
 
-void afficherMatrice(const vector<vector<int>> &matrice) {
-	for (const vector<int> &ligne: matrice) {
-		for (int i: ligne) {
-			if (i > 9) {
-				cout << i << " ";
-			} else {
-				cout << i << setw(2) << " ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
+void testerMatrice(const Matrice& m){
+   cout  << "-------------------------" << boolalpha << endl
+         << m << endl
+         << "La matrice est carree    : " << estCarree(m)
+         << "La matrice est reguliere : " << estReguliere(m)
+         << "Somme des lignes de la Matrice : " << sommeLigne(m)
+         <<
 }
+

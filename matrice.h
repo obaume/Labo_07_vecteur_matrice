@@ -52,6 +52,7 @@ std::ostream& operator << (std::ostream& os, const Matrice& m);
  */
 bool estCarree(const Matrice& m);
 
+bool estCarreeold(const Matrice& m);
 /**
  * Nom          : estReguliere
  * Description  : Retourne un booléen indiquant si la matrice est régulière 2
@@ -98,5 +99,9 @@ Matrice shuffleMatrice(const Matrice& m);
  * @return      : La matrice triée
  */
 Matrice sortMatrice(const Matrice& m);
+
+bool vecteurPlusGrand(const Vecteur &v1, const Vecteur &v2);
+
+bool vecteurPlusPetit(const Vecteur &v1, const Vecteur &v2);
 
 #endif //LABO_07_VECTEUR_MATRICE_MATRICE_H

@@ -29,31 +29,31 @@ using namespace std;
 void testerMatrice(const Matrice& m);
 
 int main() {
-   // Quelques tests pour montrer le fonctionnement de matrice.h
+    // Quelques tests pour montrer le fonctionnement de matrice.h
 	Matrice m;
 	testerMatrice(m);
 
-   m = {{4,4}, {1,3},{2}};
-   testerMatrice(m);
+    m = {{4,4}, {1,3},{2}};
+    testerMatrice(m);
 
-   m = {{1,0,0}, {0,1,0},{0,0,1}};
-   testerMatrice(m);
+    m = {{1,0,0}, {0,1,0},{0,0,1}};
+    testerMatrice(m);
 
-   m = {{1,2,3}, {1,2,3}, {1,2}, {1,2,3}};
-   testerMatrice(m);
+    m = {{1,2,3}, {1,2,3}, {1,2}, {1,2,3}};
+    testerMatrice(m);
 
-   m = {{1,2,3,4,5}, {1,2,3}, {12}, {1,2,0,0}, {1,2,3}};
-   testerMatrice(m);
+    m = {{1,2,3,4,5}, {1,2,3}, {12}, {1,2,0,0}, {1,2,3}};
+    testerMatrice(m);
 
-   m = {{9,8,7}, {6,5,4}, {3,2,1}};
-   testerMatrice(m);
+    m = {{9,8,7}, {6,5,4}, {3,2,1}};
+    testerMatrice(m);
 
 	return EXIT_SUCCESS;
 }
 
 void testerMatrice(const Matrice& m){
-   cout << "-------------------------" << boolalpha << endl
-	     << m << endl
+   cout   << "-------------------------" << boolalpha << endl
+	      << m << endl
 		  << "La matrice est carree                  : " << estCarree(m)      << endl
 		  << "La matrice est reguliere               : " << estReguliere(m)   << endl
 		  << "Taille min d'une ligne                 : " << minCol(m)         << endl
@@ -73,7 +73,12 @@ Auteur(s)           : Baume Oscar & Guyot Grégoire
 Date creation       : 08.12.2021
 
 Description         : Déclaration des fonctions de la bibliothèque matrice
-Remarque(s)         :
+Remarque(s)         : La bibliothèque permet de vérifier les priorités suivantes :
+                      - si la matrice est carrée
+                      - si la matrice est regulière
+                      Elle permet aussi de :
+                      - afficher une matrice grace à l'opérateur de flux <<
+                      - afficher un vecteur grace à l'opérateur de flux <<
 
 Modification:       ---
                     Date   :
@@ -114,6 +119,7 @@ std::ostream& operator << (std::ostream& os, const Vecteur& v);
  * @return      : retourne le flux
  */
 std::ostream& operator << (std::ostream& os, const Matrice& m);
+
 /**
  * Nom          : estCaree
  * Description  : Permet de vérifier si la matrice en paramètre est carrée
@@ -193,6 +199,7 @@ Matrice shuffleMatrice(const Matrice& m);
 Matrice sortMatrice(const Matrice& m);
 
 #endif //LABO_07_VECTEUR_MATRICE_MATRICE_H
+
 /*
 -----------------------------------------------------------------------------------
 Nom du fichier      : matrice.cpp

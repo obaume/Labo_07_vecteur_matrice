@@ -7,7 +7,12 @@ Auteur(s)           : Baume Oscar & Guyot Grégoire
 Date creation       : 08.12.2021
 
 Description         : Déclaration des fonctions de la bibliothèque matrice
-Remarque(s)         :
+Remarque(s)         : La bibliothèque permet de vérifier les priorités suivantes :
+                      - si la matrice est carrée
+                      - si la matrice est regulière
+                      Elle permet aussi de :
+                      - afficher une matrice grace à l'opérateur de flux <<
+                      - afficher un vecteur grace à l'opérateur de flux <<
 
 Modification:       ---
                     Date   :

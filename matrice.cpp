@@ -1,14 +1,19 @@
 /*
 -----------------------------------------------------------------------------------
 Nom du fichier      : matrice.cpp
+Nom du labo         : Labo07_vecteur_matrice
+
 Auteur(s)           : Baume Oscar & Guyot Grégoire
 Date creation       : 08.12.2021
+
 Description         : Déclaration des fonctions de la bibliothèque matrice
-Remarque(s)         : 
+Remarque(s)         :
+
 Modification:       ---
                     Date   :
                     Auteur :
                     Raison :
+
 Compilateur         : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
@@ -32,16 +37,6 @@ using namespace std;
 bool compSortMatrice(const Vecteur& v1, const Vecteur& v2);
 
 /**
- * Nom          : vecteurPlusGrand
- * Description  : Compare si v1 et plus grand que v2
- * Remarques    : Utiliser pour les fonctions estReguliere et estCarree
- * @param v1    : premier vecteur
- * @param v2    : deuxiême vecteur
- * @return      : si v1.size() > v2.size()
- */
-bool vecteurPlusGrand(const Vecteur &v1, const Vecteur &v2);
-
-/**
  * Nom          : vecteurPlusPetit
  * Description  : Compare si v1 et plus petit que v2
  * Remarques    : Utiliser pour les fonctions estReguliere et estCarree
@@ -52,14 +47,17 @@ bool vecteurPlusGrand(const Vecteur &v1, const Vecteur &v2);
 bool vecteurPlusPetit(const Vecteur &v1, const Vecteur &v2);
 
 bool estCarree(const Matrice& m) {
+	if(m.empty())
+		return true;
    return (*min_element(m.begin(), m.end(), vecteurPlusPetit)).size() == m.size() &&
           (*max_element(m.begin(), m.end(), vecteurPlusPetit)).size() == m.size();
 }
 
-bool estReguliere(const Matrice& m){
-   if(m.empty())
-      // retourne vrai si la matrice est vide
-      return true;
+bool estReguliere(const Matrice& m) {
+   if(m.empty()) {
+		// retourne vrai si la matrice est vide
+		return true;
+	}
    // retourne si le plus petit vecteur à la même taille que le plus grand
    return   (*min_element(m.begin(), m.end(), vecteurPlusPetit)).size() ==
             (*max_element(m.begin(), m.end(), vecteurPlusPetit)).size();
@@ -67,15 +65,16 @@ bool estReguliere(const Matrice& m){
 
 // pointe sur vecteur le plus petit et retourne ca taille
 size_t minCol(const Matrice& m) {
+	if (m.empty()) {
+		return 0;
+	}
    return (*min_element(m.begin(), m.end(), vecteurPlusPetit)).size();
 }
 
-Vecteur sommeLigne(const Matrice& m){
-   if(m.empty()){
-      return {0};
-   }
+Vecteur sommeLigne(const Matrice& m) {
    Vecteur vOut;
-   for(Matrice::const_iterator i = m.cbegin(); i != m.cend(); ++i){
+
+   for(Matrice::const_iterator i = m.cbegin(); i != m.cend(); ++i) {
       // pour chaque vecteur de la matrice
       // on utilise accumulate pour additionner tout les éléments du vecteur
       // et on push_back le résultat de accumulate dans le vecteur
@@ -85,20 +84,17 @@ Vecteur sommeLigne(const Matrice& m){
 }
 
 Vecteur sommeColonne(const Matrice& m) {
-   Vecteur sommeColonne;
+   Vecteur sommeColonne(m.size());
 
-   for (const auto & i : m) {
+   for (const Vecteur &i : m) {
       for (size_t j = 0; j < i.size(); j++) {
-         if (sommeColonne.size() < j + 1) {
-            sommeColonne.push_back(0);
-         }
          sommeColonne[j] += i[j];
       }
    }
    return sommeColonne;
 }
 
-Vecteur vectSommeMin(const Matrice& m){
+Vecteur vectSommeMin(const Matrice& m) {
    if(m.empty()){
       return {};
    }
@@ -106,7 +102,8 @@ Vecteur vectSommeMin(const Matrice& m){
    Vecteur sommeLigne = ::sommeLigne(m);
    // on retourne le vecteur à la position entre le début de sommeLigne et
    // l'élément minimum de sommeLigne
-   return m.at(distance(sommeLigne.begin(), min_element(sommeLigne.begin(), sommeLigne.end())));
+   return m.at(distance(sommeLigne.begin(),
+								min_element(sommeLigne.begin(), sommeLigne.end())));
 }
 
 Matrice shuffleMatrice(const Matrice& m) { // verifier par copie ou reference
@@ -117,22 +114,18 @@ Matrice shuffleMatrice(const Matrice& m) { // verifier par copie ou reference
    return mOut;
 }
 
-Matrice sortMatrice(const Matrice& m){
+Matrice sortMatrice(const Matrice& m) {
    Matrice mOut = m;
    // on tri mOut avec compSortMatrice
    sort(mOut.begin(),mOut.end(), compSortMatrice);
    return mOut;
 }
 
-bool vecteurPlusGrand(const Vecteur &v1, const Vecteur &v2) {
-   return v1.size() > v2.size();
-}
-
 bool vecteurPlusPetit(const Vecteur &v1, const Vecteur &v2) {
    return v1.size() < v2.size();
 }
 
-bool compSortMatrice(const Vecteur& v1, const Vecteur& v2){
+bool compSortMatrice(const Vecteur& v1, const Vecteur& v2) {
    // on retourne
    // si le plus petit élément de v1 est plus petit que le plus petit élément de v2
    return *min_element(v1.begin(), v1.end()) < *min_element(v2.begin(), v2.end());
@@ -151,11 +144,11 @@ ostream& operator<< (ostream& os, const Vecteur& v) {
 
 ostream& operator<< (ostream& os, const Matrice& m) {
    cout << "[";
-   for(Matrice::const_iterator i = m.cbegin();i != m.cend(); ++i){
+   for(Matrice::const_iterator i = m.cbegin();i != m.cend(); ++i) {
       if(i != m.begin())
          cout << ", ";
       cout << "(";
-      for(Vecteur::const_iterator j = i->cbegin(); j != i->cend(); ++j){
+      for(Vecteur::const_iterator j = i->cbegin(); j != i->cend(); ++j) {
          if(j != i->begin())
             cout << ", ";
          cout << *j;
@@ -164,10 +157,4 @@ ostream& operator<< (ostream& os, const Matrice& m) {
    }
    cout << "]";
    return os;
-}
-
-bool estCarreeold(const Matrice& m) {
-// min element max element au lieu du lambda
-	return all_of(m.begin(), m.end(),
-					  [&m](const Vecteur &v) { return v.size() == m.size(); });
 }

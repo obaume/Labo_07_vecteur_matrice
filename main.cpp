@@ -1,23 +1,26 @@
-
 /*
 -----------------------------------------------------------------------------------
-Nom du fichier : <nom du fichier>.<xxx> (xxx = h ou cpp)
-Auteur(s)      : Grégoire Guyot
-Date creation  : <jj.mm.aaaa>
+Nom du fichier : main.cpp
+Nom du labo    : Labo07_vecteur_matrice
+
+Auteur(s)      : Baume Oscar & Guyot Grégoire
+Date creation  : 08.12.2021
 
 Description    : <à compléter>
 
 Remarque(s)    : <à compléter>
 
+Modification:       ---
+                    Date   :
+                    Auteur :
+                    Raison :
+
 Compilateur    : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
 
-
 #include <cstdlib>
 #include <iostream>
-#include <iomanip>
-#include <vector>
 #include "matrice.h"
 
 using namespace std;
@@ -25,8 +28,13 @@ using namespace std;
 void testerMatrice(const Matrice& m);
 
 int main() {
-   Matrice m = {{4,4}, {1,3},{2}};
+   // Quelques tests pour montrer le fonctionnement de matrice.h
+	Matrice m;
+	testerMatrice(m);
+
+   m = {{4,4}, {1,3},{2}};
    testerMatrice(m);
+
    m = {{1,0,0}, {0,1,0},{0,0,1}};
    testerMatrice(m);
 
@@ -34,15 +42,15 @@ int main() {
 }
 
 void testerMatrice(const Matrice& m){
-   cout  << "-------------------------" << boolalpha << endl
-         << m << endl
-         << "La matrice est carree                  : " << estCarree(m)       << endl
-         << "La matrice est reguliere               : " << estReguliere(m)    << endl
-         << "Taille min d'une ligne                 : " << minCol(m)          << endl
-         << "Somme des lignes                       : " << sommeLigne(m)      << endl
-         << "Somme des colonnes                     : " << sommeColonne(m)    << endl
-         << "Vecteur des sommes minimal d'une ligne : " << vectSommeMin(m)    << endl
-         << "Shuffle Matrice                        : " << shuffleMatrice(m)  << endl
-         << "Sort                                   : " << sortMatrice(m)     << endl;
+   cout << "-------------------------" << boolalpha << endl
+	     << m << endl
+		  << "La matrice est carree                  : " << estCarree(m)       << endl
+		  << "La matrice est reguliere               : " << estReguliere(m)    << endl
+		  << "Taille min d'une ligne                 : " << minCol(m)          << endl
+		  << "Somme des lignes                       : " << sommeLigne(m)      << endl
+		  << "Somme des colonnes                     : " << sommeColonne(m)    << endl
+		  << "Vecteur des sommes minimal d'une ligne : " << vectSommeMin(m)    << endl
+		  << "Shuffle Matrice                        : " << shuffleMatrice(m)  << endl
+		  << "Sort                                   : " << sortMatrice(m)     << endl;
 }
 

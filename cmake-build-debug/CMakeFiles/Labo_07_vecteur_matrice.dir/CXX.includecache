@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/oscar/CLionProjects/Labo_07_vecteur_matrice/matrice.cpp
+matrice.h
+C:/Users/oscar/CLionProjects/Labo_07_vecteur_matrice/matrice.h
+algorithm
+-
+numeric
+-
+chrono
+-
+random
+-
+
+C:/Users/oscar/CLionProjects/Labo_07_vecteur_matrice/matrice.h
+vector
+-
+iostream
+-
+

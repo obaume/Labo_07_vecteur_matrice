@@ -72,6 +72,8 @@ size_t minCol(const Matrice& m) {
 }
 
 Vecteur sommeLigne(const Matrice& m) {
+   if(m.empty())
+      return {};
    Vecteur vOut;
 
    for(Matrice::const_iterator i = m.cbegin(); i != m.cend(); ++i) {
@@ -84,6 +86,8 @@ Vecteur sommeLigne(const Matrice& m) {
 }
 
 Vecteur sommeColonne(const Matrice& m) {
+   if(m.empty())
+      return {};
    Vecteur sommeColonne(m.size());
 
    for (const Vecteur &i : m) {
@@ -107,6 +111,8 @@ Vecteur vectSommeMin(const Matrice& m) {
 }
 
 Matrice shuffleMatrice(const Matrice& m) { // verifier par copie ou reference
+   if(m.empty())
+      return {};
    unsigned seed = (unsigned)chrono::system_clock::now().time_since_epoch().count();
    Matrice mOut = m;
    shuffle(mOut.begin(), mOut.end(), default_random_engine(seed));
@@ -115,6 +121,8 @@ Matrice shuffleMatrice(const Matrice& m) { // verifier par copie ou reference
 }
 
 Matrice sortMatrice(const Matrice& m) {
+   if(m.empty())
+      return {};
    Matrice mOut = m;
    // on tri mOut avec compSortMatrice
    sort(mOut.begin(),mOut.end(), compSortMatrice);
@@ -126,9 +134,19 @@ bool vecteurPlusPetit(const Vecteur &v1, const Vecteur &v2) {
 }
 
 bool compSortMatrice(const Vecteur& v1, const Vecteur& v2) {
-   // on retourne
-   // si le plus petit élément de v1 est plus petit que le plus petit élément de v2
-   return *min_element(v1.begin(), v1.end()) < *min_element(v2.begin(), v2.end());
+   // la valeur minimal de v1
+   int min_v1 = *min_element(v1.begin(), v1.end());
+   // la valeur minimal de v2
+   int min_v2 = *min_element(v2.begin(), v2.end());
+   if(min_v1 < min_v2)
+      return true;
+   else if(min_v1 > min_v2)
+      return false;
+   // sinon si la taille de v1 est plus petite ou égale à la taille de v2
+   else if(v1.size() <= v2.size())
+      return true;
+   else
+      return false;
 }
 
 ostream& operator<< (ostream& os, const Vecteur& v) {

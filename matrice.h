@@ -48,6 +48,7 @@ std::ostream& operator << (std::ostream& os, const Vecteur& v);
  * @return      : retourne le flux
  */
 std::ostream& operator << (std::ostream& os, const Matrice& m);
+
 /**
  * Nom          : estCaree
  * Description  : Permet de vérifier si la matrice en paramètre est carrée

@@ -100,8 +100,4 @@ Matrice shuffleMatrice(const Matrice& m);
  */
 Matrice sortMatrice(const Matrice& m);
 
-bool vecteurPlusGrand(const Vecteur &v1, const Vecteur &v2);
-
-bool vecteurPlusPetit(const Vecteur &v1, const Vecteur &v2);
-
 #endif //LABO_07_VECTEUR_MATRICE_MATRICE_H

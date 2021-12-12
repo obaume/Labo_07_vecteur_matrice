@@ -33,10 +33,8 @@ bool compSortMatrice(const Vecteur& v1, const Vecteur& v2);
 bool estReguliere(const Matrice& m){
    if(m.empty())
       return true;
-   size_t tailleLigne = m.at(0).size();
-   return all_of(m.begin(),m.end(),
-                 [&tailleLigne](const Vecteur& v){return tailleLigne == v.size();
-   });
+   return (*min_element(m.begin(), m.end())).size() == (*max_element(m.begin(),m.end
+   ())).size();
 }
 
 Vecteur sommeLigne(const Matrice& m){
@@ -55,15 +53,51 @@ Vecteur vectSommeMin(const Matrice& m){
       return {};
    }
    Vecteur sommeLigne = ::sommeLigne(m);
-   Vecteur::iterator minimum = min_element(sommeLigne.begin(), sommeLigne.end());
-   return m.at(distance(sommeLigne.begin(), minimum));
+   return m.at(distance(sommeLigne.begin(), min_element(sommeLigne.begin(), sommeLigne.end())));
 }
 
 Matrice sortMatrice(const Matrice& m){
    Matrice mOut = m;
-   sort(mOut.begin(),mOut.end(), [](const Vecteur& v1, const Vecteur& v2)
-   {return *min_element(v1.begin(), v1.end()) <= *min_element(v2.begin(), v2.end()
-   );});
+   sort(mOut.begin(),mOut.end(), compSortMatrice);
+   return mOut;
+}
+
+bool compSortMatrice(const Vecteur& v1, const Vecteur& v2){
+   return *min_element(v1.begin(), v1.end()) < *min_element(v2.begin(), v2.end());
+}
+
+bool estCarree(const Matrice& m) {
+   return all_of(m.begin(), m.end(),
+                 [&m](const Vecteur &v) { return v.size() == m.size(); });
+}
+
+// point sur vecteur le plus petit et retourne ca taille
+
+size_t minCol(const Matrice& m) {
+
+   return (*min_element(m.begin(), m.end(), [](const Vecteur &v1, const Vecteur
+   &v2) { return v1.size() < v2.size(); } )).size();
+}
+
+Vecteur sommeColonne(const Matrice& m) {
+   Vecteur sommeColonne;
+
+   for (const auto & i : m) {
+      for (size_t j = 0; j < i.size(); j++) {
+         if (sommeColonne.size() < j + 1) {
+            sommeColonne.push_back(0);
+         }
+         sommeColonne[j] += i[j];
+      }
+   }
+   return sommeColonne;
+}
+
+Matrice shuffleMatrice(const Matrice& m) { // verifier par copie ou reference
+   unsigned seed = (unsigned)chrono::system_clock::now().time_since_epoch().count();
+   Matrice mOut = m;
+   shuffle(mOut.begin(), mOut.end(), default_random_engine(seed));
+
    return mOut;
 }
 
@@ -93,40 +127,4 @@ ostream& operator<< (ostream& os, const Matrice& m) {
    }
    cout << "]";
    return os;
-}
-
-bool estCarree(const Matrice& m) {
-
-	return all_of(m.begin(), m.end(),
-					  [&m](const Vecteur &v) { return v.size() == m.size(); });
-}
-
-// point sur vecteur le plus petit et retourne ca taille
-
-size_t minCol(const Matrice& m) {
-
-	return (*min_element(m.begin(), m.end(), [](const Vecteur &v1, const Vecteur
-	&v2) { return v1.size() < v2.size(); } )).size();
-}
-
-Vecteur sommeColonne(const Matrice& m) {
-	Vecteur sommeColonne;
-
-	for (const auto & i : m) {
-		for (size_t j = 0; j < i.size(); j++) {
-			if (sommeColonne.size() < j + 1) {
-				sommeColonne.push_back(0);
-			}
-			sommeColonne[j] += i[j];
-		}
-	}
-	return sommeColonne;
-}
-
-Matrice shuffleMatrice(const Matrice& m) { // verifier par copie ou reference
-	unsigned seed = (unsigned)chrono::system_clock::now().time_since_epoch().count();
-   Matrice mOut = m;
-	shuffle(mOut.begin(), mOut.end(), default_random_engine(seed));
-
-	return mOut;
 }

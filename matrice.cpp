@@ -128,3 +128,40 @@ ostream& operator<< (ostream& os, const Matrice& m) {
    cout << "]";
    return os;
 }
+
+bool estCarreeold(const Matrice& m) {
+// min element max element au lieu du lambda
+	return all_of(m.begin(), m.end(),
+					  [&m](const Vecteur &v) { return v.size() == m.size(); });
+}
+
+bool estCarree(const Matrice& m) {
+	return (*min_element(m.begin(), m.end(), vecteurPlusPetit)).size() == m.size() &&
+			 (*max_element(m.begin(), m.end(), vecteurPlusGrand)).size() == m.size();
+}
+bool vecteurPlusGrand(const Vecteur &v1, const Vecteur &v2) {
+	return v1.size() > v2.size();
+}
+
+bool vecteurPlusPetit(const Vecteur &v1, const Vecteur &v2) {
+	return v1.size() < v2.size();
+}
+// pointe sur vecteur le plus petit et retourne ca taille
+size_t minCol(const Matrice& m) {
+
+	return (*min_element(m.begin(), m.end(), vecteurPlusPetit)).size();
+}
+
+Vecteur sommeColonne(const Matrice& m) {
+	Vecteur sommeColonne(m.size());
+
+	for (const auto & i : m) {
+		for (size_t j = 0; j < i.size(); j++) {
+			//if (sommeColonne.size() < j + 1) {
+			//	sommeColonne.push_back(0);
+			//}
+			sommeColonne[j] += i[j];
+		}
+	}
+	return sommeColonne;
+}
